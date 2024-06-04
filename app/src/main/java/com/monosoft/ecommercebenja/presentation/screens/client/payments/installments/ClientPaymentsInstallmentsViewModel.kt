@@ -55,6 +55,7 @@ class ClientPaymentsInstallmentsViewModel @Inject constructor(
 
     var selectedInstallment by mutableStateOf<PayerCost?>(null)
 
+
     init {
         getTotalToPay()
         getSessionData()
@@ -77,6 +78,7 @@ class ClientPaymentsInstallmentsViewModel @Inject constructor(
         installmentsResponse = Resource.Loading
         val result = mercadoPagoUseCase.getInstallments(firstSixDigits, amount).first()
         installmentsResponse = result
+
         installmentsResponse.run {
             when(this) {
                 is Resource.Success -> {
@@ -85,6 +87,7 @@ class ClientPaymentsInstallmentsViewModel @Inject constructor(
                 else -> {}
             }
         }
+        selectedInstallment= installment?.payerCosts?.first()
         Log.d("ClientPaymentsFormViewModel", "Data: ${installmentsResponse}")
     }
 
@@ -105,10 +108,10 @@ class ClientPaymentsInstallmentsViewModel @Inject constructor(
             transactionAmount = totalToPay,
             payer = Payer(
                 email = user?.email ?: "",
-                identification = Identification(
-                    type = cardTokenBody.cardholder.identification.type,
-                    number = cardTokenBody.cardholder.identification.number
-                )
+//                identification = Identification(
+//                    type = cardTokenBody.cardholder.identification.type,
+//                    number = cardTokenBody.cardholder.identification.number
+//                )
             ),
             order = Order(
                 idClient = user?.id ?: "",

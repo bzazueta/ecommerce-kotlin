@@ -45,10 +45,10 @@ data class PayerCost (
     val installments: Int,
 
     @SerializedName("installment_rate")
-    val installmentRate: Long,
+    val installmentRate: Double,
 
     @SerializedName("discount_rate")
-    val discountRate: Long,
+    val discountRate: Double,
 
     @SerializedName("reimbursement_rate")
     val reimbursementRate: Any? = null,
@@ -59,10 +59,10 @@ data class PayerCost (
     val installmentRateCollector: List<InstallmentRateCollector>,
 
     @SerializedName("min_allowed_amount")
-    val minAllowedAmount: Long,
+    val minAllowedAmount: Int,
 
     @SerializedName("max_allowed_amount")
-    val maxAllowedAmount: Long,
+    val maxAllowedAmount: Int,
 
     @SerializedName("recommended_message")
     val recommendedMessage: String,
@@ -71,7 +71,7 @@ data class PayerCost (
     val installmentAmount: Double,
 
     @SerializedName("total_amount")
-    val totalAmount: Long,
+    val totalAmount: Double,
 
     @SerializedName("payment_method_option_id")
     val paymentMethodOptionID: PaymentMethodOptionID

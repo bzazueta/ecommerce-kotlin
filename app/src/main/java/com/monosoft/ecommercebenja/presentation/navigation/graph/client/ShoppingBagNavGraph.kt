@@ -7,6 +7,8 @@ import com.monosoft.ecommercebenja.presentation.navigation.screens.client.Shoppi
 import com.monosoft.ecommercebenja.presentation.screens.client.address.create.ClientAddressCreateScreen
 import com.monosoft.ecommercebenja.presentation.screens.client.address.list.ClientAddressListScreen
 import com.monosoft.ecommercebenja.presentation.screens.client.payments.form.ClientPaymentsFormScreen
+import com.monosoft.ecommercebenja.presentation.screens.client.payments.installments.ClientPaymentsInstallmentsScreen
+import com.monosoft.ecommercebenja.presentation.screens.client.payments.status.ClientPaymentsStatusScreen
 import com.monosoft.ecommercebenja.presentation.screens.client.shopping_bag.ClientShoppingBagScreen
 
 
@@ -43,7 +45,7 @@ fun NavGraphBuilder.ShoppingBagNavGraph(navController: NavHostController) {
             })
         ) {
             it.arguments?.getString("payment_form")?.let {
-               // ClientPaymentsInstallmentsScreen(navController, it)
+                ClientPaymentsInstallmentsScreen(navController, it)
             }
         }
         composable(
@@ -53,7 +55,7 @@ fun NavGraphBuilder.ShoppingBagNavGraph(navController: NavHostController) {
             })
         ) {
             it.arguments?.getString("payment_response")?.let {
-                //ClientPaymentsStatusScreen(navController, it)
+                ClientPaymentsStatusScreen(navController, it)
             }
         }
 

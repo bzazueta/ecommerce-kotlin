@@ -211,10 +211,10 @@ data class Card (
     val lastFourDigits: String,
 
     @SerializedName("expiration_month")
-    val expirationMonth: Long,
+    val expirationMonth: Int,
 
     @SerializedName("expiration_year")
-    val expirationYear: Long,
+    val expirationYear: Int,
 
     @SerializedName("date_created")
     val dateCreated: String,
@@ -228,7 +228,7 @@ data class Card (
 
 data class FeeDetail (
     val type: String,
-    val amount: Long,
+    val amount: Double,
 
     @SerializedName("fee_payer")
     val feePayer: String
@@ -282,7 +282,7 @@ data class BusinessInfo (
 )
 
 data class Tax (
-    val value: Long,
+    val value: Double,
     val type: String
 )
 
@@ -294,13 +294,13 @@ data class TransactionDetails (
     val acquirerReference: Any? = null,
 
     @SerializedName("net_received_amount")
-    val netReceivedAmount: Long,
+    val netReceivedAmount: Double,
 
     @SerializedName("total_paid_amount")
-    val totalPaidAmount: Long,
+    val totalPaidAmount: Double,
 
     @SerializedName("overpaid_amount")
-    val overpaidAmount: Long,
+    val overpaidAmount: Double,
 
     @SerializedName("external_resource_url")
     val externalResourceURL: Any? = null,

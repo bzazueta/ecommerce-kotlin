@@ -13,7 +13,7 @@ import com.monosoft.ecommercebenja.presentation.components.DefaultTopBar
 fun ClientPaymentsFormScreen(navController: NavHostController, vm: ClientPaymentsFormViewModel = hiltViewModel()) {
 
     vm.getIdentificationTypes()
-//    vm.getInstallments(525413,100000.0 )
+
 
     Scaffold(
         topBar = {
@@ -24,7 +24,11 @@ fun ClientPaymentsFormScreen(navController: NavHostController, vm: ClientPayment
             )
         }
     ) { paddingValues ->
-        GetIdentificationTypes(paddingValues = paddingValues, navController = navController)
+        //GetIdentificationTypes(paddingValues = paddingValues, navController = navController)
+        ClientPaymentsFormContent(
+            paddingValues = paddingValues,
+            navController = navController,
+        )
     }
     
 }

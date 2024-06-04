@@ -36,6 +36,6 @@ data class PaymentBody (
 
 data class Payer (
     val email: String,
-    val identification: Identification
+    //val identification: Identification
 )
 

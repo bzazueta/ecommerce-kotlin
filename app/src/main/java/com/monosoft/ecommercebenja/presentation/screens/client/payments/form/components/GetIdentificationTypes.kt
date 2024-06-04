@@ -21,11 +21,11 @@ fun GetIdentificationTypes(paddingValues: PaddingValues, navController: NavHostC
             ProgressBar()
         }
         is Resource.Success -> {
-           ClientPaymentsFormContent(
-               paddingValues = paddingValues,
-               navController = navController,
-               identificationTypes = response.data.map { identificationType -> identificationType.id }
-           )
+//           ClientPaymentsFormContent(
+//               paddingValues = paddingValues,
+//               navController = navController,
+//               identificationTypes = response.data.map { identificationType -> identificationType.id }
+//           )
         }
         is Resource.Failure -> {
             Toast.makeText(LocalContext.current, response.message, Toast.LENGTH_LONG).show()

@@ -28,13 +28,13 @@ import com.monosoft.ecommercebenja.presentation.navigation.screens.client.Shoppi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ClientPaymentsFormContent(paddingValues: PaddingValues, navController: NavHostController, identificationTypes: List<String>, vm: ClientPaymentsFormViewModel = hiltViewModel()) {
+fun ClientPaymentsFormContent(paddingValues: PaddingValues, navController: NavHostController, vm: ClientPaymentsFormViewModel = hiltViewModel()) { //, identificationTypes: List<String>
 
     val state = vm.state
-    var selectedItem by remember { mutableStateOf(identificationTypes[0]) }
-    vm.onIdentificationTypeInput(selectedItem)
+    //var selectedItem by remember { mutableStateOf(identificationTypes[0]) }
+   // vm.onIdentificationTypeInput(selectedItem)
     var expanded by remember { mutableStateOf(false) }
-
+   // vm.onIdentificationTypeInput("no aplica para mexico")
     Column(
         modifier = Modifier
             .padding(paddingValues)
@@ -44,7 +44,7 @@ fun ClientPaymentsFormContent(paddingValues: PaddingValues, navController: NavHo
         DefaultTextField(
             modifier = Modifier.fillMaxWidth(),
             value = state.cardNumber,
-            onValueChange = { vm.onCardNumberInput(it) },
+            onValueChange = { vm.onCardNumberInput("4075595716483764") },
             label = "Numero de la tarjeta",
             icon = Icons.Default.Settings,
             keyboardType = KeyboardType.Number
@@ -57,7 +57,7 @@ fun ClientPaymentsFormContent(paddingValues: PaddingValues, navController: NavHo
             DefaultTextField(
                 modifier = Modifier.weight(1f),
                 value = state.expirationYear,
-                onValueChange = { vm.onYearExpirationInput(it) },
+                onValueChange = { vm.onYearExpirationInput("2025") },
                 label = "Año de expiracion YYYY",
                 icon = Icons.Default.DateRange,
                 keyboardType = KeyboardType.Number,
@@ -67,7 +67,7 @@ fun ClientPaymentsFormContent(paddingValues: PaddingValues, navController: NavHo
             DefaultTextField(
                 modifier = Modifier.weight(1f),
                 value = state.expirationMonth,
-                onValueChange = { vm.onMonthExpirationInput(it) },
+                onValueChange = { vm.onMonthExpirationInput("11") },
                 label = "Mes de expiracion MM",
                 icon = Icons.Default.DateRange,
                 keyboardType = KeyboardType.Number,
@@ -78,7 +78,7 @@ fun ClientPaymentsFormContent(paddingValues: PaddingValues, navController: NavHo
         DefaultTextField(
             modifier = Modifier.fillMaxWidth(),
             value = state.name,
-            onValueChange = { vm.onNameInput(it) },
+            onValueChange = { vm.onNameInput("juan") },
             label = "Nombre del titular",
             icon = Icons.Default.Person
         )
@@ -86,7 +86,7 @@ fun ClientPaymentsFormContent(paddingValues: PaddingValues, navController: NavHo
         DefaultTextField(
             modifier = Modifier.fillMaxWidth(),
             value = state.securityCode,
-            onValueChange = { vm.onSecurityCodeInput(it) },
+            onValueChange = { vm.onSecurityCodeInput("123") },
             label = "Codigo de seguridad",
             icon = Icons.Default.Lock
         )
@@ -97,37 +97,37 @@ fun ClientPaymentsFormContent(paddingValues: PaddingValues, navController: NavHo
                 expanded = !expanded
             }
         ) {
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                value = selectedItem,
-                onValueChange = {},
-                readOnly = true,
-                label = { Text(text = "Tipo de identificacion") },
-                trailingIcon = {
-                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
-                },
-//                colors = TextFieldDefaults.textFieldColors(
-//                    //backgroundColor =Color.White
-//                )
-
-            )
+//            OutlinedTextField(
+//                modifier = Modifier.fillMaxWidth(),
+//                value = selectedItem,
+//                onValueChange = {},
+//                readOnly = true,
+//                label = { Text(text = "Tipo de identificacion") },
+//                trailingIcon = {
+//                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+//                },
+////                colors = TextFieldDefaults.textFieldColors(
+////                    //backgroundColor =Color.White
+////                )
+//
+//            )
 
             ExposedDropdownMenu(
                 modifier = Modifier.background(Color.White),
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
-                identificationTypes.forEachIndexed { index, identification ->
-//                    DropdownMenuItem(
-//                        onClick = {
-//                            selectedItem = identification
-//                            vm.onIdentificationTypeInput(selectedItem)
-//                            expanded = false
-//                        }
-//                    ) {
-//                        Text(text = identification)
-//                    }
-                }
+//                identificationTypes.forEachIndexed { index, identification ->
+////                    DropdownMenuItem(
+////                        onClick = {
+////                            selectedItem = identification
+////                            vm.onIdentificationTypeInput(selectedItem)
+////                            expanded = false
+////                        }
+////                    ) {
+////                        Text(text = identification)
+////                    }
+//                }
             }
         }
         Spacer(modifier = Modifier.height(5.dp))
