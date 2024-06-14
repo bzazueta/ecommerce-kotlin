@@ -12,7 +12,7 @@ import com.monosoft.ecommercebenja.presentation.components.ProgressBar
 import com.monosoft.ecommercebenja.presentation.navigation.screens.client.ShoppingBagScreen
 import com.monosoft.ecommercebenja.presentation.screens.client.payments.installments.ClientPaymentsInstallmentsViewModel
 
-@Composable
+@Composable //this composa
 fun CreatePayment(navController: NavHostController, vm: ClientPaymentsInstallmentsViewModel = hiltViewModel()) {
     val context = LocalContext.current
     when(val response = vm.paymentResponse) {
@@ -20,10 +20,10 @@ fun CreatePayment(navController: NavHostController, vm: ClientPaymentsInstallmen
             ProgressBar()
         }
         is Resource.Success -> {
-            LaunchedEffect(key1 = Unit) {
+            LaunchedEffect(key1 = Unit) {//evaluamos la respuesta en una corrutina con launcheffect
                 if (response.data.status == "approved") {
                     navController.navigate(route = ShoppingBagScreen.PaymentsStatus.passPaymentResponse(response.data.toJson())) {
-                        popUpTo(ShoppingBagScreen.PaymentsInstallments.route) { inclusive = true}
+                        popUpTo(ShoppingBagScreen.PaymentsInstallments.route) { inclusive = true}//cierra la pantalla de shoppingbag ShoppingBagScreen.PaymentsInstallments.route
                     }    
                 }
                 else {

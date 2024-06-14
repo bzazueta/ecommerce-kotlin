@@ -9,6 +9,7 @@ import com.monosoft.ecommercebenja.data.dataSource.remote.service.MercadoPagoSer
 import com.monosoft.ecommercebenja.data.dataSource.remote.service.ProductsService
 import com.monosoft.ecommercebenja.data.dataSource.remote.service.UsersService
 import com.monosoft.ecommercebenja.core.Config
+import com.monosoft.ecommercebenja.data.dataSource.remote.service.OrdersService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -94,10 +95,10 @@ object NetworkModule {
         return retrofit.create(MercadoPagoService::class.java)
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideOrdersService(retrofit: Retrofit): OrdersService {
-//        return retrofit.create(OrdersService::class.java)
-//    }
+    @Provides
+    @Singleton
+    fun provideOrdersService(retrofit: Retrofit): OrdersService {
+        return retrofit.create(OrdersService::class.java)
+    }
 
 }

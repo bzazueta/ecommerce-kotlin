@@ -25,6 +25,9 @@ import com.monosoft.ecommercebenja.data.dataSource.remote.AddressRemoteDataSourc
 import com.monosoft.ecommercebenja.data.dataSource.remote.CategoriesRemoteDataSource
 import com.monosoft.ecommercebenja.data.dataSource.remote.MercadoPagoRemoteDataSource
 import com.monosoft.ecommercebenja.data.dataSource.remote.UsersRemoteDataSource
+import com.monosoft.ecommercebenja.data.repository.OrdersRepositoryImpl
+import com.monosoft.ecommercebenja.domain.repository.OrdersRepository
+import com.optic.ecommerceappmvvm.data.dataSource.remote.OrdersRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -73,9 +76,9 @@ object RepositoryModule {
         mercadoPagoRemoteDataSource: MercadoPagoRemoteDataSource
     ): MercadoPagoRepository = MercadoPagoRepositoryImpl(mercadoPagoRemoteDataSource)
 
-//    @Provides
-//    fun provideOrdersRepository(
-//        ordersRemoteDataSource: OrdersRemoteDataSource
-//    ): OrdersRepository = OrdersRepositoryImpl(ordersRemoteDataSource)
+    @Provides
+    fun provideOrdersRepository(
+        ordersRemoteDataSource: OrdersRemoteDataSource
+    ): OrdersRepository = OrdersRepositoryImpl(ordersRemoteDataSource)
 
 }

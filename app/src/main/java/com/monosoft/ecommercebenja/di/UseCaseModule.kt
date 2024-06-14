@@ -5,6 +5,7 @@ import com.monosoft.ecommercebenja.domain.repository.AddressRepository
 import com.monosoft.ecommercebenja.domain.repository.AuthRepository
 import com.monosoft.ecommercebenja.domain.repository.CategoriesRepository
 import com.monosoft.ecommercebenja.domain.repository.MercadoPagoRepository
+import com.monosoft.ecommercebenja.domain.repository.OrdersRepository
 import com.monosoft.ecommercebenja.domain.repository.ProductsRepository
 import com.monosoft.ecommercebenja.domain.repository.ShoppingBagRepository
 import com.monosoft.ecommercebenja.domain.repository.UsersRepository
@@ -35,6 +36,10 @@ import com.monosoft.ecommercebenja.domain.useCase.categories.UpdateCategoryUseCa
 import com.monosoft.ecommercebenja.domain.useCase.categories.UpdateCategoryWithImageUseCase
 import com.monosoft.ecommercebenja.domain.useCase.mercado_pago.CreateCardTokenUseCase
 import com.monosoft.ecommercebenja.domain.useCase.mercado_pago.CreatePaymentUseCase
+import com.monosoft.ecommercebenja.domain.useCase.orders.FindAllOrdersUseCase
+import com.monosoft.ecommercebenja.domain.useCase.orders.FindByClientOrdersUseCase
+import com.monosoft.ecommercebenja.domain.useCase.orders.OrdersUseCase
+import com.monosoft.ecommercebenja.domain.useCase.orders.UpdateStatusOrdersUseCase
 import com.monosoft.ecommercebenja.domain.useCase.products.FindAllUseCase
 import com.monosoft.ecommercebenja.domain.useCase.products.FindByNameUseCase
 import com.monosoft.ecommercebenja.domain.useCase.shopping_bag.AddUseCase
@@ -113,10 +118,10 @@ object UseCaseModule {
         createPayment = CreatePaymentUseCase(mercadoPagoRepository),
     )
 
-//    @Provides
-//    fun provideOrdersUseCase(ordersRepository: OrdersRepository) = OrdersUseCase(
-//        findAllOrders = FindAllOrdersUseCase(ordersRepository),
-//        findByClientOrders = FindByClientOrdersUseCase(ordersRepository),
-//        updateStatusOrders = UpdateStatusOrdersUseCase(ordersRepository)
-//    )
+    @Provides
+    fun provideOrdersUseCase(ordersRepository: OrdersRepository) = OrdersUseCase(
+        findAllOrders = FindAllOrdersUseCase(ordersRepository),
+        findByClientOrders = FindByClientOrdersUseCase(ordersRepository),
+        updateStatusOrders = UpdateStatusOrdersUseCase(ordersRepository)
+    )
 }

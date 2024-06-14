@@ -10,6 +10,7 @@ import com.monosoft.ecommercebenja.presentation.screens.client.category.list.Cli
 import com.monosoft.ecommercebenja.presentation.screens.client.products.list.ClientProductListScreen
 import com.monosoft.ecommercebenja.presentation.screens.profile.info.ProfileScreen
 import com.monosoft.ecommercebenja.presentation.navigation.graph.profile.ProfileNavGraph
+import com.monosoft.ecommercebenja.presentation.screens.client.order.list.ClientOrderListScreen
 
 
 @Composable
@@ -29,7 +30,7 @@ fun ClientNavGraph(navController: NavHostController) {
         }
 
         composable(route = ClientScreen.OrderList.route) {
-            //ClientOrderListScreen(navController)
+            ClientOrderListScreen(navController)
         }
 
         composable(route = ClientScreen.Profile.route) {
@@ -40,7 +41,7 @@ fun ClientNavGraph(navController: NavHostController) {
         ClientCategoryNavGraph(navController)
         ClientProductNavGraph(navController)
         ShoppingBagNavGraph(navController)
-//        ClientOrderNavGraph(navController)
+        ClientOrderNavGraph(navController)
 
     }
 }

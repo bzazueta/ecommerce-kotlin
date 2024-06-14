@@ -10,6 +10,7 @@ import com.monosoft.ecommercebenja.presentation.screens.admin.category.list.Admi
 import com.monosoft.ecommercebenja.presentation.screens.admin.category.list.AdminProductsListScreen
 import com.monosoft.ecommercebenja.presentation.screens.profile.info.ProfileScreen
 import com.monosoft.ecommercebenja.presentation.navigation.graph.profile.ProfileNavGraph
+import com.monosoft.ecommercebenja.presentation.screens.admin.order.list.AdminOrderListScreen
 
 @Composable
 fun AdminNavGraph(navController: NavHostController) {
@@ -32,8 +33,12 @@ fun AdminNavGraph(navController: NavHostController) {
             ProfileScreen(navController)//
         }
 
+        composable(route = AdminScreen.OrderList.route) {
+            AdminOrderListScreen(navController)//
+        }
+
         ProfileNavGraph(navController)
         AdminCategoryNavGraph(navController)
-
+        AdminOrderNavGraph(navController)
     }
 }
