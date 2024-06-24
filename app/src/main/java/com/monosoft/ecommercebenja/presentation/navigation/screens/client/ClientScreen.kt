@@ -39,6 +39,5 @@ sealed class ClientScreen(
     )
 
 
-
 }
 

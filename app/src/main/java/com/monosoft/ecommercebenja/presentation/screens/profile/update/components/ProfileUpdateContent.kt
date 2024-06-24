@@ -14,6 +14,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -42,9 +43,10 @@ import com.monosoft.ecommercebenja.presentation.screens.profile.update.ProfileUp
 @Composable
 fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewModel = hiltViewModel()) {
     val activity = LocalContext.current as? Activity
-    val state = vm.state
+    val state = vm.stateFlow.collectAsState()
     val stateDialog = remember { mutableStateOf(false) }
     vm.resultingActivityHandler.handle()
+
 
     DialogCapturePicture(
         state = stateDialog,
@@ -71,16 +73,16 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
 
         Column(modifier = Modifier.fillMaxWidth()) {
             Spacer(modifier = Modifier.height(10.dp))
-            if (!state.image.isNullOrBlank()) {
+            if (!state.value.image.isNullOrBlank()) {
                 AsyncImage(
                     modifier = Modifier
                         .size(150.dp)
                         .clip(CircleShape)
                         .align(Alignment.CenterHorizontally)
                         .clickable {
-                             stateDialog.value = true
+                            stateDialog.value = true
                         },
-                    model = state.image,
+                    model = state.value.image,
                     contentDescription = "",
                     contentScale = ContentScale.Crop
                 )
@@ -124,7 +126,7 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
 
                         DefaultTextField(
                             modifier = Modifier.fillMaxWidth(),
-                            value = state.name,
+                            value = state.value.name,
                             onValueChange = {
                                 vm.onNameInput(it)
                             },
@@ -133,7 +135,7 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
                         )
                         DefaultTextField(
                             modifier = Modifier.fillMaxWidth(),
-                            value = state.lastname,
+                            value = state.value.lastname,
                             onValueChange = {
                                 vm.onLastnameInput(it)
                             },
@@ -142,7 +144,7 @@ fun ProfileUpdateContent(paddingValues: PaddingValues, vm: ProfileUpdateViewMode
                         )
                         DefaultTextField(
                             modifier = Modifier.fillMaxWidth(),
-                            value = state.phone,
+                            value = state.value.phone,
                             onValueChange = {
                                 vm.onPhoneInput(it)
                             },

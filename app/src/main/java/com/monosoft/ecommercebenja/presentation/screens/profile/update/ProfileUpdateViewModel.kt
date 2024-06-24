@@ -16,6 +16,10 @@ import com.monosoft.ecommercebenja.presentation.util.ResultingActivityHandler
 import com.monosoft.ecommercebenja.presentation.screens.profile.update.mapper.toUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
@@ -29,25 +33,55 @@ class ProfileUpdateViewModel @Inject constructor(
 ): ViewModel() {
 
     var state by mutableStateOf(ProfileUpdateState())
-
+    private val _stateFlow: MutableStateFlow<ProfileUpdateState> = MutableStateFlow(ProfileUpdateState())
+    val stateFlow: StateFlow<ProfileUpdateState> = _stateFlow.asStateFlow()
     // ARGUMENTS
-    val data = savedStateHandle.get<String>("user")//para poder recibor los argumentos
-    var user = User.fromJson(data!!)
-
+    //val data = savedStateHandle.get<String>("user")//para poder recibor los argumentos
+    //var user = User.fromJson(data!!)
+    var user by mutableStateOf<User?>(null)
+        private set
+   // var user = User("1","we","","","","","","", emptyList(),null)
     // IMAGENES
     var file: File? = null
     val resultingActivityHandler = ResultingActivityHandler()
+
+
 
     var updateResponse by mutableStateOf<Resource<User>?>(null)
         private set
 
     init {
-        state = state.copy(
-            name = user.name,
-            lastname = user.lastname,
-            phone = user.phone,
-            image = user.image ?: ""
-        )
+//        state = state.copy(
+//            name = user!!.name,
+//            lastname = user!!.lastname,
+//            phone = user!!.phone,
+//            image = user!!.image ?: ""
+//        )
+    }
+
+    init {
+        getSessionData()
+    }
+
+    fun getSessionData() = viewModelScope.launch {
+        authUseCase.getSessionData().collect() { data ->
+            user = data.user
+                    state = state.copy(
+                            name = user!!.name,
+                            lastname = user!!.lastname,
+                            phone = user!!.phone,
+                            image = user!!.image ?: ""
+                   )
+            _stateFlow.update {
+                state.copy(
+                    name = user!!.name,
+                    lastname = user!!.lastname,
+                    phone = user!!.phone,
+                    image = user!!.image ?: ""
+                )
+            }
+
+        }
     }
 
     //actualizamos la sesion
@@ -66,13 +100,13 @@ class ProfileUpdateViewModel @Inject constructor(
 
     fun updateWithImage() = viewModelScope.launch {
         updateResponse = Resource.Loading
-        val result = usersUseCase.updateUserWithImage(user.id ?: "", state.toUser(), file!!) //state.toUser() mapeamos los datos del usuario
+        val result = usersUseCase.updateUserWithImage(user?.id ?: "", state.toUser(), file!!) //state.toUser() mapeamos los datos del usuario
         updateResponse = result
     }
 
     fun update() = viewModelScope.launch {
         updateResponse = Resource.Loading
-        val result = usersUseCase.updateUser(user.id ?: "", state.toUser())
+        val result = usersUseCase.updateUser(user?.id ?: "", state.toUser())
         updateResponse = result
     }
 
@@ -106,6 +140,17 @@ class ProfileUpdateViewModel @Inject constructor(
 
     fun onPhoneInput(input: String) {
         state = state.copy(phone = input)
+    }
+
+    fun params(user : User){
+        state = state.copy(
+            name = user.name,
+            lastname = user.lastname,
+            phone = user.phone,
+            image = user.image ?: ""
+        )
+
+
     }
 
 }

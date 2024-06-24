@@ -13,5 +13,5 @@ object Graph {
     const val CLIENT_PRODUCT = "client_product_graph"
     const val CLIENT_ORDER = "client_order_graph"
     const val SHOPPING_BAG = "shopping_bag_graph"
-    const val PROFILE = "profile_graph/{user}"  // se pone en llave para
+    const val PROFILE = "profile_graph"  // se pone en llave para
 }

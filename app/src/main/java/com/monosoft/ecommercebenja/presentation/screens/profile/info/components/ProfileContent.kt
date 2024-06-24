@@ -35,11 +35,14 @@ import com.monosoft.ecommercebenja.R
 import com.monosoft.ecommercebenja.presentation.MainActivity
 import com.monosoft.ecommercebenja.presentation.components.DefaultButton
 import com.monosoft.ecommercebenja.presentation.navigation.Graph
+import com.monosoft.ecommercebenja.presentation.navigation.screen.profile.ProfileScreen
+import com.monosoft.ecommercebenja.presentation.navigation.screens.client.ClientProductScreen
 import com.monosoft.ecommercebenja.presentation.screens.profile.info.ProfileViewModel
+import com.monosoft.ecommercebenja.presentation.screens.profile.update.ProfileUpdateViewModel
 
 
 @Composable
-fun ProfileContent(paddingValues: PaddingValues, navController: NavHostController, vm: ProfileViewModel = hiltViewModel()) {
+fun ProfileContent(paddingValues: PaddingValues, navController: NavHostController, vm: ProfileViewModel = hiltViewModel(), vmp: ProfileUpdateViewModel= hiltViewModel()) {
     val activity = LocalContext.current as? Activity
 
     Box(modifier = Modifier
@@ -189,7 +192,12 @@ fun ProfileContent(paddingValues: PaddingValues, navController: NavHostControlle
                         modifier = Modifier.fillMaxWidth(),
                         text = "Actualizar informacion",
                         onClick = {
-                            navController.navigate(route = "${Graph.PROFILE}/${vm.user?.toJson()}")
+                            val x = vm.user?.toJson().toString()
+                           // vm.user?.let { vmp.params(it) }
+                            navController.navigate(route = "${Graph.PROFILE}/gjhgjhgh")
+//                            navController.navigate(
+//                                route = ProfileScreen.ProfileUpdate.passUser("vm.user!!.toJson()")
+//                            )
                         }
                     )
                 }

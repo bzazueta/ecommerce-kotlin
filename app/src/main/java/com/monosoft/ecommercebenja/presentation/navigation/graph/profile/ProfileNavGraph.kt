@@ -9,7 +9,7 @@ import com.monosoft.ecommercebenja.presentation.screens.profile.update.ProfileUp
 
 fun NavGraphBuilder.ProfileNavGraph(navController: NavHostController) {
     navigation(
-        route = Graph.PROFILE + "/{user}", //Graph.PROFILE + "/{user} se agrega pararecibir valores o argumentos
+        route = Graph.PROFILE+ "/{user}", //Graph.PROFILE + "/{user}" se agrega pararecibir valores o argumentos
         startDestination = ProfileScreen.ProfileUpdate.route
     ) {
 
@@ -22,6 +22,7 @@ fun NavGraphBuilder.ProfileNavGraph(navController: NavHostController) {
             it.arguments?.getString("user")?.let {//obtenomos los argumentos
                 ProfileUpdateScreen(navController, userParam = it)// pasamos los parametros al screen
             }
+
         }
 
     }
