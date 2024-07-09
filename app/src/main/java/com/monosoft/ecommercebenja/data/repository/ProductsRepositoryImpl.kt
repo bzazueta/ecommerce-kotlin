@@ -77,8 +77,8 @@ class ProductsRepositoryImpl(
         }
     }.flowOn(Dispatchers.IO)//se usa para correr la corrutina en el hilo de la aplicacion
 
-    override fun findByName(name: String): Flow<Resource<List<Product>>> {
-        TODO("Not yet implemented")
+    override fun findByName(name: String): Flow<Resource<List<Product>>> = flow {
+        emit(ResponseToRequest.send(productsRemoteDataSource.findByName(name)))
     }
 
     override suspend fun create(product: Product, files: List<File>): Resource<Product> {

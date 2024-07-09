@@ -19,16 +19,19 @@ class ClientProductListViewModel @Inject constructor(private val productsUseCase
         private set
 
     var search by mutableStateOf("")
+    var init by mutableStateOf(false)
 
     init {
-        getProducts()
+        //getProducts()
     }
 
     fun getProducts() = viewModelScope.launch {
         productsResponse = Resource.Loading
         productsUseCase.findAll().collect() {
             Log.d("ClientProductListViewModel", "Data: $it")
-            productsResponse = it
+            if(!init) {
+                productsResponse = it
+            }
         }
     }
 
@@ -41,7 +44,9 @@ class ClientProductListViewModel @Inject constructor(private val productsUseCase
     }
 
     fun onSearchInput(value: String) {
+        init = value.length != 0
         search = value
+
     }
 
 }
