@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+/hs_err_pid18776.log
+/replay_pid18776.log
