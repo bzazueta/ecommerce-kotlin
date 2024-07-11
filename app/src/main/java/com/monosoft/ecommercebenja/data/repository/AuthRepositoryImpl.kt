@@ -34,5 +34,17 @@ class AuthRepositoryImpl(
     override suspend fun logout() = authLocalDataSource.logout()
 
     override fun getSessionData(): Flow<AuthResponse> = authLocalDataSource.getSessionData()
+    override suspend fun delete(id: String): Resource<Unit> {
+        ResponseToRequest.send(authRemoteDataSource.delete(id)).run {
+            return when(this) {
+                is Resource.Success -> {
+                    Resource.Success(Unit)
+                }
+                else -> {
+                    Resource.Failure("Error desconocido")
+                }
+            }
+        }
+    }
 
 }

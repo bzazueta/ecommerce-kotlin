@@ -15,7 +15,7 @@ import com.monosoft.ecommercebenja.data.dataSource.local.entity.ShoppingBagProdu
 
 @Database(
     entities = [CategoryEntity::class,ProductEntity::class,ShoppingBagProductEntity::class,AddressEntity::class],
-    version = 3,
+    version = 5,
     exportSchema = false
 )
 abstract class EcommerceDB: RoomDatabase() {

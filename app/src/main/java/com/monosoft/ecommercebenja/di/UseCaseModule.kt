@@ -27,6 +27,7 @@ import com.monosoft.ecommercebenja.domain.useCase.users.UsersUseCase
 import com.monosoft.ecommercebenja.domain.useCase.address.AddressUseCase
 import com.monosoft.ecommercebenja.domain.useCase.address.CreateAddressUseCase
 import com.monosoft.ecommercebenja.domain.useCase.address.FindByUserAddressUseCase
+import com.monosoft.ecommercebenja.domain.useCase.auth.DeleteAccountUseCase
 import com.monosoft.ecommercebenja.domain.useCase.auth.GetSessionDataUseCase
 import com.monosoft.ecommercebenja.domain.useCase.auth.LogoutSessionUseCase
 import com.monosoft.ecommercebenja.domain.useCase.auth.SaveSessionUseCase
@@ -66,7 +67,8 @@ object UseCaseModule {
         saveSession = SaveSessionUseCase(authRepository),
         getSessionData = GetSessionDataUseCase(authRepository),
         logout = LogoutSessionUseCase(authRepository),
-        updateSession = UpdateSessionUseCase(authRepository)
+        updateSession = UpdateSessionUseCase(authRepository),
+        deleteAccountUseCase = DeleteAccountUseCase(authRepository)
     )
 
     @Provides

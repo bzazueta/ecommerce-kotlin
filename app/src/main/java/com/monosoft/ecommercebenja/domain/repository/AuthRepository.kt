@@ -14,4 +14,5 @@ interface AuthRepository {
     suspend fun updateSession(user: User)
     suspend fun logout()
     fun getSessionData(): Flow<AuthResponse>
+    suspend fun delete(id: String): Resource<Unit>
 }

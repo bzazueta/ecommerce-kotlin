@@ -4,9 +4,11 @@ import com.monosoft.ecommercebenja.domain.model.AuthResponse
 import com.monosoft.ecommercebenja.domain.model.User
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface AuthService {
 
@@ -22,5 +24,10 @@ interface AuthService {
     suspend fun register(
         @Body() user: User,
     ): Response<AuthResponse>
+
+    @DELETE("auth/{id}")
+    suspend fun delete(
+        @Path("id") id: String,
+    ): Response<Unit>
 
 }

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Person
@@ -17,6 +18,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +37,8 @@ import coil.compose.AsyncImage
 import com.monosoft.ecommercebenja.R
 import com.monosoft.ecommercebenja.presentation.MainActivity
 import com.monosoft.ecommercebenja.presentation.components.DefaultButton
+import com.monosoft.ecommercebenja.presentation.components.DialogCapturePicture
+import com.monosoft.ecommercebenja.presentation.components.DialogDeleteUser
 import com.monosoft.ecommercebenja.presentation.navigation.Graph
 import com.monosoft.ecommercebenja.presentation.navigation.screen.profile.ProfileScreen
 import com.monosoft.ecommercebenja.presentation.navigation.screens.client.ClientProductScreen
@@ -44,6 +49,14 @@ import com.monosoft.ecommercebenja.presentation.screens.profile.update.ProfileUp
 @Composable
 fun ProfileContent(paddingValues: PaddingValues, navController: NavHostController, vm: ProfileViewModel = hiltViewModel(), vmp: ProfileUpdateViewModel= hiltViewModel()) {
     val activity = LocalContext.current as? Activity
+
+    val stateDialog = remember { mutableStateOf(false) }
+
+    DialogDeleteUser(
+        state = stateDialog,
+        idUser = 0,
+        deleteUser = { vm.user?.id?.let { vm.deletUser(it) } }
+    )
 
     Box(modifier = Modifier
         .padding(paddingValues)
@@ -89,6 +102,21 @@ fun ProfileContent(paddingValues: PaddingValues, navController: NavHostControlle
                 Icon(
                     modifier = Modifier.size(35.dp),
                     imageVector = Icons.Default.ExitToApp,
+                    contentDescription = "",
+                    tint = Color.White,
+                )
+            }
+            IconButton(
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(end = 15.dp, top = 0.dp),
+                onClick = {
+                       stateDialog.value=true
+                }
+            ) {
+                Icon(
+                    modifier = Modifier.size(35.dp),
+                    imageVector = Icons.Default.Delete,
                     contentDescription = "",
                     tint = Color.White,
                 )

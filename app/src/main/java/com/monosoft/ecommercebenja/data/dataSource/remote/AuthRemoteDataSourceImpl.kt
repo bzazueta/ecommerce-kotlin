@@ -14,5 +14,9 @@ class AuthRemoteDataSourceImpl(private val authService: AuthService): AuthRemote
 
     override suspend fun login(email: String, password: String) = authService.login(email, password)
     override suspend fun register(user: User): Response<AuthResponse> = authService.register(user)
+    override suspend fun delete(idUser: String): Response<Unit> {
+
+        return  authService.delete(idUser)
+    }
 
 }
