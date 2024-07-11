@@ -16,13 +16,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.monosoft.ecommercebenja.presentation.screens.profile.info.ProfileViewModel
 
 
 @Composable
 fun DialogDeleteUser(
     state: MutableState<Boolean>,
-    idUser: Int,
-    deleteUser: () ->Unit
+    idUser: String,
+    deleteUser: () ->Unit,
+    vm : ProfileViewModel
 ){
 
 
@@ -59,7 +61,8 @@ fun DialogDeleteUser(
                         shape = RectangleShape,
                         onClick = {
                             state.value = false
-                            deleteUser()
+                            vm.deletUser(idUser = idUser)
+                            //deleteUser()
                         }
                     ) {
                         Text(text = "Eliminar")

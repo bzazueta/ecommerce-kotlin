@@ -54,8 +54,9 @@ fun ProfileContent(paddingValues: PaddingValues, navController: NavHostControlle
 
     DialogDeleteUser(
         state = stateDialog,
-        idUser = 0,
-        deleteUser = { vm.user?.id?.let { vm.deletUser(it) } }
+        idUser = vm.user?.id!!,
+        deleteUser = { vm.user?.id?.let { vm.deletUser(it) } },
+        vm  = vm
     )
 
     Box(modifier = Modifier
