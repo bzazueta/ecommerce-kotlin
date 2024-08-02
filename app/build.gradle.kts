@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.monosoft.ecommercebenja"
+    namespace = "com.monosoft.ecommercemono"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.monosoft.ecommercebenja"
+        applicationId = "com.monosoft.ecommercemono"
         minSdk = 23
         targetSdk = 34
         versionCode = 1

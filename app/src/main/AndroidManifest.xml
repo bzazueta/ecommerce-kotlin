@@ -40,7 +40,7 @@
         </activity>
 
         <provider
-            android:authorities="com.monosoft.ecommercebenja.fileprovider"
+            android:authorities="com.monosoft.ecommercemono.fileprovider"
             android:name=".presentation.uti.ComposeFileProvider"
             android:grantUriPermissions="true"
             android:exported="false">
