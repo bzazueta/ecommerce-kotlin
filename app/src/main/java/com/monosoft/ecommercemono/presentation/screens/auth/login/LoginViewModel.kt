@@ -3,9 +3,14 @@ package com.monosoft.ecommercemono.presentation.screens.auth.login
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.monosoft.ecommercemono.core.Config
 import com.monosoft.ecommercemono.domain.model.AuthResponse
+import com.monosoft.ecommercemono.domain.model.Url
 import com.monosoft.ecommercemono.domain.useCase.auth.AuthUseCase
 import com.monosoft.ecommercemono.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,8 +36,15 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase): 
     var loginResponse by mutableStateOf<Resource<AuthResponse>?>(null)
         private set
 
+    var urlResponse by mutableStateOf<Resource<List<Url>>?>(null)
+        private set
+
+    private lateinit var appUpdateManager: AppUpdateManager
+    private val REQUEST_PERMISSION = 100
+
     init {
-        getSessionData()
+        geturl()
+        //getSessionData()
     }
 
     fun onEmailInput(phone: String) {
@@ -47,6 +59,11 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase): 
         authUseCase.saveSession(authResponse)
     }
 
+    fun saveUrl(url: String) = viewModelScope.launch {
+     url.toString()
+    //authUseCase.saveSession(url)
+    }
+
     fun getSessionData() = viewModelScope.launch {
         authUseCase.getSessionData().collect() { data ->
             Log.d("LoginViewModel", "Data: ${data.toJson()}")
@@ -54,6 +71,13 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase): 
                 loginResponse = Resource.Success(data)
             }
         }
+    }
+
+    fun geturl() = viewModelScope.launch {
+        urlResponse = Resource.Loading
+        val result = authUseCase.getUrlUseCase()
+        urlResponse = result
+        getSessionData()
     }
 
     fun login() = viewModelScope.launch {
@@ -77,5 +101,7 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase): 
         }
         return true
     }
+
+
 
 }

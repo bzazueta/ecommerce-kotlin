@@ -7,5 +7,6 @@ data class AuthUseCase(
     val getSessionData: GetSessionDataUseCase,
     val logout: LogoutSessionUseCase,
     val updateSession: UpdateSessionUseCase,
-    val deleteAccountUseCase: DeleteAccountUseCase
+    val deleteAccountUseCase: DeleteAccountUseCase,
+    val getUrlUseCase: GetUrlUseCase
 )

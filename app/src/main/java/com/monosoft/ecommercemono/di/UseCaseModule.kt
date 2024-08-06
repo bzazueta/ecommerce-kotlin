@@ -29,6 +29,7 @@ import com.monosoft.ecommercemono.domain.useCase.address.CreateAddressUseCase
 import com.monosoft.ecommercemono.domain.useCase.address.FindByUserAddressUseCase
 import com.monosoft.ecommercemono.domain.useCase.auth.DeleteAccountUseCase
 import com.monosoft.ecommercemono.domain.useCase.auth.GetSessionDataUseCase
+import com.monosoft.ecommercemono.domain.useCase.auth.GetUrlUseCase
 import com.monosoft.ecommercemono.domain.useCase.auth.LogoutSessionUseCase
 import com.monosoft.ecommercemono.domain.useCase.auth.SaveSessionUseCase
 import com.monosoft.ecommercemono.domain.useCase.categories.CategoriesUseCase
@@ -68,7 +69,8 @@ object UseCaseModule {
         getSessionData = GetSessionDataUseCase(authRepository),
         logout = LogoutSessionUseCase(authRepository),
         updateSession = UpdateSessionUseCase(authRepository),
-        deleteAccountUseCase = DeleteAccountUseCase(authRepository)
+        deleteAccountUseCase = DeleteAccountUseCase(authRepository),
+        getUrlUseCase = GetUrlUseCase(authRepository)
     )
 
     @Provides

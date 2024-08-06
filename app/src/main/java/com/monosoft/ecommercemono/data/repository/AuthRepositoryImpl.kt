@@ -3,6 +3,7 @@ package com.monosoft.ecommercemono.data.repository
 import com.monosoft.ecommercemono.data.dataSource.local.AuthLocalDataSource
 import com.monosoft.ecommercemono.data.dataSource.remote.AuthRemoteDataSource
 import com.monosoft.ecommercemono.domain.model.AuthResponse
+import com.monosoft.ecommercemono.domain.model.Url
 import com.monosoft.ecommercemono.domain.model.User
 import com.monosoft.ecommercemono.domain.repository.AuthRepository
 import com.monosoft.ecommercemono.domain.util.Resource
@@ -22,6 +23,9 @@ class AuthRepositoryImpl(
     override suspend fun login(email: String, password: String): Resource<AuthResponse> = ResponseToRequest.send(
         authRemoteDataSource.login(email, password)
     )
+
+    override suspend fun getUrlDomain() : Resource<List<Url>> = ResponseToRequest.send(authRemoteDataSource.getUrlDomain())
+
 
     override suspend fun register(user: User): Resource<AuthResponse> = ResponseToRequest.send(
         authRemoteDataSource.register(user)
@@ -46,5 +50,6 @@ class AuthRepositoryImpl(
             }
         }
     }
+
 
 }

@@ -19,6 +19,7 @@ import com.monosoft.ecommercemono.data.dataSource.remote.MercadoPagoRemoteDataSo
 import com.monosoft.ecommercemono.data.dataSource.remote.UsersRemoteDataSource
 import com.monosoft.ecommercemono.data.dataSource.remote.UsersRemoteDataSourceImpl
 import com.monosoft.ecommercemono.data.dataSource.remote.service.OrdersService
+import com.monosoft.ecommercemono.data.dataSource.remote.service.UrlService
 import com.optic.ecommerceappmvvm.data.dataSource.remote.OrdersRemoteDataSource
 import com.optic.ecommerceappmvvm.data.dataSource.remote.OrdersRemoteDataSourceImpl
 import dagger.Module
@@ -35,7 +36,7 @@ import dagger.hilt.components.SingletonComponent
 object RemoteDataModule {
 
     @Provides
-    fun provideAuthRemoteDataSource(authService: AuthService): AuthRemoteDataSource = AuthRemoteDataSourceImpl(authService)
+    fun provideAuthRemoteDataSource(authService: AuthService,urlService: UrlService): AuthRemoteDataSource = AuthRemoteDataSourceImpl(authService,urlService)
 
     @Provides
     fun provideUsersRemoteDataSource(usersService: UsersService): UsersRemoteDataSource = UsersRemoteDataSourceImpl(usersService)

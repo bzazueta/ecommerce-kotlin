@@ -1,12 +1,15 @@
 package com.monosoft.ecommercemono.data.dataSource.remote.service
 
 import com.monosoft.ecommercemono.domain.model.AuthResponse
+import com.monosoft.ecommercemono.domain.model.Product
+import com.monosoft.ecommercemono.domain.model.Url
 import com.monosoft.ecommercemono.domain.model.User
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -29,5 +32,6 @@ interface AuthService {
     suspend fun delete(
         @Path("id") id: String,
     ): Response<Unit>
+
 
 }
