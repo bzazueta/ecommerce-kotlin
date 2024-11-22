@@ -67,11 +67,11 @@ object NetworkModule {
     @Provides
     @Singleton
     @DefaultRetrofit
-    fun provideRetrofitUrl(okHttpClient: OkHttpClient): Retrofit { // POSTMAN - THUNDER CLIENT - RETROFIT
+    fun provideRetrofitUrl(): Retrofit { // POSTMAN - THUNDER CLIENT - RETROFIT
         return Retrofit
             .Builder()
-            .baseUrl("https://9ec4-190-171-70-58.ngrok-free.app")
-            .client(okHttpClient)
+            .baseUrl("https://monitodevs.com/apiProfile/v1/profile/")
+            //.client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

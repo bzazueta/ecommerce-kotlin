@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface UrlService {
 
-    @GET("auth/url")
+    @GET("getUrl.php")
     suspend fun getUrlDomain(): Response<List<Url>>
 }

@@ -31,6 +31,7 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase): 
     var pwd by  mutableStateOf("")
 
     var errorMessage by mutableStateOf("")
+    var url by mutableStateOf("")
 
     // LOGIN RESPONSE
     var loginResponse by mutableStateOf<Resource<AuthResponse>?>(null)
@@ -76,8 +77,15 @@ class LoginViewModel @Inject constructor(private val authUseCase: AuthUseCase): 
     fun geturl() = viewModelScope.launch {
         urlResponse = Resource.Loading
         val result = authUseCase.getUrlUseCase()
-        urlResponse = result
-        getSessionData()
+        when(result){
+            is Resource.Success->{
+              url =  result.data[0].url
+                Config.BASE_URL = url
+            }
+            else -> {}
+        }
+        saveUrl(url)
+        //getSessionData()
     }
 
     fun login() = viewModelScope.launch {
